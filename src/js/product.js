@@ -6,25 +6,30 @@ const productId = getParam('product');
 const dataSource = new ProductData("tents");
 
 const product = new ProductDetails(productId, dataSource);
-product.init();
+product.init()
+// product.init().then(() => {
+//   document
+//   .getElementById("addToCart")
+//   .addEventListener("click", addToCartHandler);
+
+// });
 
 // add product to cart by getting and setting LocalStorage
-function addProductToCart(product) {
-  let cart = getLocalStorage("so-cart");
-  if (cart === null) {
-    cart = []; // initialize cart as array
-  }
-  cart.push(product); //add product to cart
-  setLocalStorage("so-cart", cart);
-}
+// function addProductToCart(product) {
+//   let cart = getLocalStorage("so-cart");
+//   console.log(cart)
+//   if (cart === null || !Array.isArray(cart)) {
+//     cart = []; // initialize cart as array
+//   }
+//   console.log(cart)
+//   cart.push(product); //add product to cart
+//   setLocalStorage("so-cart", cart);
+// }
 
 // add to cart button event handler
-async function addToCartHandler(e) {
-  const product = await dataSource.findProductById(e.target.dataset.id);
-  addProductToCart(product);
-}
+// async function addToCartHandler(e) {
+//   const product = await dataSource.findProductById(e.target.dataset.id);
+//   addProductToCart(product);
+// }
 
 // add listener to Add to Cart button
-document
-  .getElementById("addToCart")
-  .addEventListener("click", addToCartHandler);
