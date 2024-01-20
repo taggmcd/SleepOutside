@@ -2,7 +2,7 @@ import { getLocalStorage, setLocalStorage, setClick } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  if (cartItems) {
+  if (cartItems.length > 0) {
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
     setClick(".cart-card__remove-btn", removeFromCart);
