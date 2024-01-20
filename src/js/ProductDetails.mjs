@@ -16,7 +16,7 @@ function productDetailsTemplate(product) {
       <div class="product-detail__add">
         <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
       </div></section>`;
-  }
+}
 
 export default class ProductDetails {
     constructor(productId, dataSource) {
@@ -33,7 +33,6 @@ export default class ProductDetails {
         cart.push(this.product); //add product to cart
         setLocalStorage("so-cart", cart);
     }
-
    async init() {
         this.product = await this.dataSource.findProductById(this.productId);
 
