@@ -110,6 +110,11 @@ button {
   fill: gray;
 }
 
+.cart-card__remove-btn {
+  width: 20px;
+  cursor: pointer;
+}
+
 /* End cart icon styles */
 
 .mission {
