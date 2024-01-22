@@ -14,5 +14,21 @@ export default class Alert {
             .then((data) => (data));
     }
 
+    buidAlerts() {
 
+        listAlerts = getData();
+
+        if (listAlerts.length > 0) {
+          let alertsP = "";
+          listAlerts.map((item) => {
+            alertsP =
+              alertsP +
+              `<p style="background-color:${item.background} ; color: ${item.color};">${item.message}</p>`;
+          });
+          alertsP = "<section class='alert-list'>" + alertsP + "</section>";
+          return alertsP;
+        } else {
+          return "";
+        }
+      }
 }
