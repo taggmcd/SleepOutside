@@ -1,7 +1,8 @@
-import { getLocalStorage, setLocalStorage, setClick } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, setClick, addItemCount } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
+  addItemCount();
   if (!cartItems || cartItems.length === 0) {
     document.querySelector(".product-list").innerHTML =
       "Your cart is currently empty";

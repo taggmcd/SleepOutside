@@ -1,4 +1,4 @@
-import { renderListWithTemplate } from "./utils.mjs";
+import { renderListWithTemplate, addItemCount } from "./utils.mjs";
 
 function productCardTemplate(product) {
     return `<li class="product-card">
@@ -39,3 +39,5 @@ export default class ProductListing {
     //     const elementList = list.map(productCardTemplate);
     //     this.listElement.innerHTML = elementList.join("");
     //   }
+
+    addItemCount();

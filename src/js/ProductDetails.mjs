@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, addItemCount } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
     return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
@@ -26,12 +26,13 @@ export default class ProductDetails {
     }
 
     addToCart() {
-        let cart = getLocalStorage("so-cart");
-        if (cart === null) {
-          cart = []; // initialize cart as array
-        }
-        cart.push(this.product); //add product to cart
-        setLocalStorage("so-cart", cart);
+      let cart = getLocalStorage("so-cart");
+      if (cart === null) {
+        cart = []; // initialize cart as array
+      }
+      cart.push(this.product); //add product to cart
+      setLocalStorage("so-cart", cart);
+      addItemCount();
     }
    async init() {
         this.product = await this.dataSource.findProductById(this.productId);
@@ -41,7 +42,7 @@ export default class ProductDetails {
         // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
         document
         .getElementById("addToCart")
-        .addEventListener("click", this.addToCart.bind(this));
+        .addEventListener("click", this.addToCart.bind(this))
     }
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
@@ -51,3 +52,4 @@ export default class ProductDetails {
         );
     }
 }
+addItemCount();
