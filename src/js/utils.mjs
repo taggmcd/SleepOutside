@@ -37,14 +37,3 @@ export function getParam(param) {
 
   return product;
 }
-
-export function addItemCount() {
-  const cartItemsNumber = getLocalStorage("so-cart").length;
-  const cartDiv = document.querySelector(".cart").firstElementChild;
-  if (document.getElementById("items-count") == null) {
-    cartDiv.insertAdjacentHTML("beforeend", `<sup id="items-count">${cartItemsNumber}</sup>`);
-  } else {
-    document.getElementById("items-count").remove();
-    cartDiv.insertAdjacentHTML("beforeend", `<sup id="items-count">${cartItemsNumber}</sup>`)
-  }
-}
