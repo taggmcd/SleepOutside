@@ -103,6 +103,20 @@ button {
   text-align: center;
 }
 
+.hide {
+  display: none;
+}
+
+.cart-footer {
+  font-size: var(--small-font);
+  padding: 1em;
+}
+
+.cart-total {
+  grid-column: 3;
+  text-align: right;
+}
+
 .cart svg {
   width: 25px;
 }
