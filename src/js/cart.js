@@ -3,13 +3,13 @@ import { getLocalStorage, setLocalStorage, setClick, addItemCount } from "./util
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   addItemCount();
-  if (cartItems.length > 0) {
+  if (!cartItems || cartItems.length === 0) {
+    document.querySelector(".product-list").innerHTML =
+      "Your cart is currently empty";
+  } else if (cartItems.length > 0) {
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
     setClick(".cart-card__remove-btn", removeFromCart);
-  } else {
-    document.querySelector(".product-list").innerHTML =
-      "Your cart is currently empty";
   }
 }
 
