@@ -30,9 +30,21 @@ export default class ProductDetails {
         if (cart === null) {
           cart = []; // initialize cart as array
         }
-        cart.push(this.product); //add product to cart
+
+        const productIds = cart.map(product => product.Id) // list of Ids in the cart
+        const index = productIds.indexOf(this.productId) // finds Id of current product
+
+        if (index == -1) { // check to see if product is not in cart
+          this.product.quantity = 1;
+          cart.push(this.product); // add product to cart
+        }
+        else {
+          cart[index].quantity += 1; // add 1 to quantity of item already in cart
+        }
+
         setLocalStorage("so-cart", cart);
     }
+
    async init() {
         this.product = await this.dataSource.findProductById(this.productId);
 
@@ -43,6 +55,7 @@ export default class ProductDetails {
         .getElementById("addToCart")
         .addEventListener("click", this.addToCart.bind(this));
     }
+
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
         element.insertAdjacentHTML(
