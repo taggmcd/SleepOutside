@@ -1,6 +1,7 @@
 import { getParam } from "./utils.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 import ProductData from "./ProductData.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
 const productId = getParam("product");
 const dataSource = new ProductData("tents");
@@ -34,3 +35,4 @@ product.init();
 // }
 
 // add listener to Add to Cart button
+loadHeaderFooter();
