@@ -1,5 +1,4 @@
 import { getLocalStorage, setClick, setLocalStorage } from "./utils.mjs";
-import { removeFromCart } from "./cart";
 
 export default class shoppingCart {
   constructor(key, parentSelector) {
@@ -15,8 +14,17 @@ export default class shoppingCart {
     } else if (cartItems.length > 0) {
       const htmlItems = cartItems.map((item) => cartItemTemplate(item));
       document.querySelector(".product-list").innerHTML = htmlItems.join("");
-      setClick(".cart-card__remove-btn", removeFromCart);
+      setClick(".cart-card__remove-btn", this.removeFromCart.bind(this));
     }
+  }
+
+  removeFromCart(event) {
+    const productId = event.target.getAttribute("data-id");
+    const cartItems = getLocalStorage("so-cart");
+    const newItems = cartItems.filter((item) => item.Id !== productId);
+
+    setLocalStorage("so-cart", newItems);
+    this.renderCartContents();
   }
 }
 
