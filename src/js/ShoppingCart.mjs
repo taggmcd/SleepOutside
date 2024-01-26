@@ -66,9 +66,12 @@ if (cartItems.length > 0) {
 const totalElement = document.getElementById("totalAmount");
 totalElement.textContent = total.toFixed(2);
 // Show total in footer
-cart-footer.classList.remove("hide");
+cartFooter.classList.remove("hide");
 }
-
+  else {
+    cartFooter.classList.add("hide")
+  }
+}
     // Original rendering solution
     //   renderList(list) {
     //     const elementList = list.map(productCardTemplate);
