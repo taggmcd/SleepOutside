@@ -15,6 +15,7 @@ export default class shoppingCart {
       const htmlItems = cartItems.map((item) => cartItemTemplate(item));
       document.querySelector(".product-list").innerHTML = htmlItems.join("");
       setClick(".cart-card__remove-btn", this.removeFromCart.bind(this));
+      displayTotal(cartItems)
     }
   }
 
@@ -48,16 +49,17 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
-const cartItems = document.querySelectorAll(".cart-item");
+function displayTotal(cartItems) {
+    //const cartItems = document.querySelectorAll(".cart-item");  //this will pull as a parameter for the function
 const cartFooter = document.querySelector(".cart-footer");
 
 if (cartItems.length > 0) {
   //Calculate total
   let total = 0;
   cartItems.forEach(item => {
-    const priceString = item.textContent.split("$")[1];
-    const price = parseFloat(priceString);
-    total += price;
+    const priceString = item.FinalPrice  //textContent.split("$")[1]; //this info should come from JSON
+    //const price = parseFloat(priceString);
+    total += price * item.quantity;
   });
 
 //Display the total in the cart footer
