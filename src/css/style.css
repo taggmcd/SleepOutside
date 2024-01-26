@@ -140,6 +140,15 @@ button {
 }
 .products {
   padding: 0.5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.products a {
+grid-column: auto;
+grid-row: 1,2;
+text-decoration: none;
+color: black;
+text-align: center;
 }
 .product-list {
   display: flex;
@@ -165,7 +174,10 @@ button {
 .product-card p {
   margin: 0.5em 0;
 }
-
+.product-card_discount {
+  background-color: crimson;
+  color: azure;
+}
 .card__brand {
   font-size: var(--small-font);
 }
