@@ -48,6 +48,25 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
+const cartItems = document.querySelectorAll(".cart-item");
+const cartFooter = document.querySelector(".cart-footer");
+
+if (cartItems.length > 0) {
+  //Calculate total
+  let total = 0;
+  cartItems.forEach(item => {
+    const priceString = item.textContent.split("$")[1];
+    const price = parseFloat(priceString);
+    total += price;
+  });
+
+//Display the total in the cart footer
+const totalElement = document.getElementById("totalAmount");
+totalElement.textContent = total.toFixed(2);
+// Show total in footer
+cart-footer.classList.remove("hide");
+}
+
     // Original rendering solution
     //   renderList(list) {
     //     const elementList = list.map(productCardTemplate);
