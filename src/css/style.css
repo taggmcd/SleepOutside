@@ -221,6 +221,20 @@ button {
   grid-column: 3;
 }
 
+.product-options {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+.product-options > a {
+  display: grid;
+  grid-template-rows: 2fr 1fr ;
+  padding: 1em;
+  justify-items: center;
+  align-items: center;
+  text-decoration: none;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -232,6 +246,10 @@ button {
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
+  }
+  .product-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
