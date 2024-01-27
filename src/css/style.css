@@ -141,6 +141,13 @@ button {
 .products {
   padding: 0.5em;
 }
+.products a {
+grid-column: auto;
+grid-row: 1,2;
+text-decoration: none;
+color: black;
+text-align: center;
+}
 .product-list {
   display: flex;
   flex-flow: row wrap;
@@ -165,7 +172,13 @@ button {
 .product-card p {
   margin: 0.5em 0;
 }
-
+.product-card a {
+  display: inline-block;
+}
+.product-card_discount {
+  background-color: crimson;
+  color: azure;
+}
 .card__brand {
   font-size: var(--small-font);
 }

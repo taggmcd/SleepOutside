@@ -1,6 +1,7 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
+    const difference = product.SuggestedRetailPrice - product.FinalPrice;
     return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
       <h2 class="divider">${product.NameWithoutBrand}</h2>
       <img
@@ -9,6 +10,7 @@ function productDetailsTemplate(product) {
         alt="${product.NameWithoutBrand}"
       />
       <p class="product-card__price">$${product.FinalPrice}</p>
+      <p class="product-card_discount">$${difference}</p>
       <p class="product__color">${product.Colors[0].ColorName}</p>
       <p class="product__description">
       ${product.DescriptionHtmlSimple}

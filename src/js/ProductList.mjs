@@ -19,12 +19,14 @@ export default class ProductListing {
       }
 
       async init() {
-        const list = await this.dataSource.getData(this.category); // get category
-        this.renderList(list); //took out filterProducts to see all products
+        const list = await this.dataSource.getData(this.category);
+        this.renderList(list);
+        const capitalizedCategory = this.category.split("-").map(value => value[0].toUpperCase() + value.slice(1)).join(" ")
+        document.querySelector(".title").innerHTML = "Top Products: " + capitalizedCategory;
       }
 
       renderList(list) {
-        renderListWithTemplate(productCardTemplate, this.listElement, list);
+        renderListWithTemplate(productCardTemplate, this.listElement, list, "beforeend");
       }
 }
 
