@@ -9,10 +9,8 @@ const baseURL = import.meta.env.VITE_SERVER_URL
 
 export default class ProductData {
   async getData(category) {
-    console.log(category);
     const response = await fetch(baseURL + `products/search/${category}`);
     const data = await convertToJson(response);
-    console.log(data)
     return data.Result; // has to have Result for the fetch from the server
   }
   async findProductById(id) {
