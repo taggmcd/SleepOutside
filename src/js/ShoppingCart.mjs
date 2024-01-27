@@ -15,7 +15,7 @@ export default class shoppingCart {
       const htmlItems = cartItems.map((item) => cartItemTemplate(item));
       document.querySelector(".product-list").innerHTML = htmlItems.join("");
       setClick(".cart-card__remove-btn", this.removeFromCart.bind(this));
-      displayTotal(cartItems)
+      displayTotal(cartItems);
     }
   }
 
@@ -51,29 +51,32 @@ function cartItemTemplate(item) {
 
 function displayTotal(cartItems) {
     //const cartItems = document.querySelectorAll(".cart-item");  //this will pull as a parameter for the function
-const cartFooter = document.querySelector(".cart-footer");
+    const cartFooter = document.querySelector(".cart-footer");
+    if (cartItems.length > 0) {
+        //Calculate total
+      let total = 0;
+      cartItems.forEach(item => {
+      //const priceString = item.FinalPrice
+      total += item.FinalPrice * item.quantity;
+      //{<p class="cart-footer">$${item.total}</p>
+    });
 
-if (cartItems.length > 0) {
-  //Calculate total
-  let total = 0;
-  cartItems.forEach(item => {
-    const priceString = item.FinalPrice  //textContent.split("$")[1]; //this info should come from JSON
-    //const price = parseFloat(priceString);
-    total += price * item.quantity;
-  });
+    function calculateCartTotal () {
+      let total = 0;
+      items.forEach(cartItems) => {
+        totalAmount += 
+      })
+    }
+    ;
 
-//Display the total in the cart footer
-const totalElement = document.getElementById("totalAmount");
-totalElement.textContent = total.toFixed(2);
-// Show total in footer
-cartFooter.classList.remove("hide");
-}
-  else {
-    cartFooter.classList.add("hide")
+    const totalElement = document.getElementById("totalAmount");
+    totalElement.textContent = totalAmount;
+    totalAmount = (total + cartItems).toFixed(2);
+    cartFooter.classList.remove("hide");
+    }
+    else {
+      cartFooter.classList.add("hide");
+    }
   }
-}
-    // Original rendering solution
-    //   renderList(list) {
-    //     const elementList = list.map(productCardTemplate);
-    //     this.listElement.innerHTML = elementList.join("");
-    //   }
+
+   //Display the total in the cart footer
