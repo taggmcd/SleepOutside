@@ -31,11 +31,14 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
     parentElement.insertAdjacentHTML(position, elementList.join(""));
   }
 
-export function renderWithTemplate(parentElement, data, position = "afterbegin", clear = false) {
+export function renderWithTemplate(parentElement, data, position = "afterbegin", clear = false, callback) {
     if (clear) {
       parentElement.innerHTML = "";
     }
     parentElement.insertAdjacentHTML(position, data);
+    if (callback) {
+      callback(data)
+    }
   }
 
 //  export async function loadTemplate(path) {
@@ -67,3 +70,18 @@ export function getParam(param) {
 
   return product;
 }
+
+export function addItemCount() {
+  const cartItems = getLocalStorage("so-cart");
+  const cartDiv = document.querySelector(".cart").firstElementChild;
+  let totalItemQuantity = 0;
+  if (cartItems === null || cartItems.length === 0) {
+    cartDiv.insertAdjacentHTML("beforeend", `<sup id="items-count">0</sup>`);
+  } else {
+    cartItems.forEach(item => {
+      totalItemQuantity += item.quantity;
+    });
+    // document.getElementById("items-count").remove();
+    cartDiv.insertAdjacentHTML("beforeend", `<sup id="items-count">${totalItemQuantity}</sup>`)
+    }
+  }
