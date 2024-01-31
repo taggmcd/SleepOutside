@@ -31,9 +31,9 @@ export default class shoppingCart {
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
-  <a href="#" class="cart-card__image">
+  <a href="/product_pages/index.html?product=${item.Id}" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimarySmall}"
       alt="${item.Name}"
     />
   </a>

@@ -2,19 +2,14 @@ import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
     return `<li class="product-card">
-      <a href="product_pages/index.html?product=${product.Id}">
-        <img src="${product.Image}" alt="Image of ${product.Name}">
+      <a href="/product_pages/index.html?product=${product.Id}">
+        <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}">
         <h3 class="card__brand">${product.Brand.Name}</h3>
         <h2 class="card__name">${product.Name}</h2>
         <p class="product-card__price">$${product.ListPrice}</p>
       </a>
     </li>`
   }
-
-function filterProducts(list) {
-    // stretch 2 challenge - show only products needed
-    return list.slice(0,4);
-}
 
 export default class ProductListing {
     constructor(category, dataSource, listElement) {
@@ -24,18 +19,14 @@ export default class ProductListing {
       }
 
       async init() {
-        const list = await this.dataSource.getData();
-        this.renderList(filterProducts(list));
-
+        const list = await this.dataSource.getData(this.category);
+        this.renderList(list);
+        const capitalizedCategory = this.category.split("-").map(value => value[0].toUpperCase() + value.slice(1)).join(" ")
+        document.querySelector(".title").innerHTML = "Top Products: " + capitalizedCategory;
       }
 
       renderList(list) {
-        // stretch 1 challenge
-        renderListWithTemplate(productCardTemplate, this.listElement, list);
+        renderListWithTemplate(productCardTemplate, this.listElement, list, "beforeend");
       }
 }
-    // Original rendering solution
-    //   renderList(list) {
-    //     const elementList = list.map(productCardTemplate);
-    //     this.listElement.innerHTML = elementList.join("");
-    //   }
+
