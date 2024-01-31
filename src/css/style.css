@@ -225,6 +225,61 @@ button {
   grid-column: 3;
 }
 
+/* Start form styles */
+form fieldset {
+    margin: 2rem 0;
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    padding: .5rem 2%;
+    }
+form h3 {
+	color: var(secondary-color);
+	font-size: var(--large-font);
+}
+form legend {
+    color: var(--primary-color);
+    margin: 0 1rem;
+    padding: 0 .5rem;
+}
+form label.top, form div {
+    display: block;
+    padding-top: 1rem;
+    color: var(--secondary-color);
+    font-size: .8rem;
+}
+form label.top input, form label.top select {
+    -webkit-appearance: none;
+    display: block;
+    font-size: 1rem;
+    border: solid 1px var(--tertiary-color);
+    border-radius: 4px;
+    padding: .75rem;
+    color: var(--dark-grey);
+    width: 100%;
+    max-width: 20rem;
+    background-color: rgba(0, 0, 0, .1);
+}
+form label.sbs {
+    display: block;
+    padding: .75rem 0;
+    color: var(--secondary-color);
+} 
+form input.submitBtn {
+    border: none;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 1rem;
+    padding: .75rem 1.5em;
+    margin: 0 0 2rem 2%;
+    width: 96%;
+    max-width: 20rem;
+}
+form label.top input:required {
+    border-left: red solid 6px;
+}
+form label.top input:required:valid {
+    border-left: var(--secondary-color) 6px;
+}
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
