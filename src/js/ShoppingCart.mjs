@@ -50,33 +50,23 @@ function cartItemTemplate(item) {
 }
 
 function displayTotal(cartItems) {
-    //const cartItems = document.querySelectorAll(".cart-item");  //this will pull as a parameter for the function
+ //this will pull as a parameter for the function
     const cartFooter = document.querySelector(".cart-footer");
     if (cartItems.length > 0) {
+      let total = 0;
         //Calculate total
-      let total = 0;
       cartItems.forEach(item => {
-      //const priceString = item.FinalPrice
       total += item.FinalPrice * item.quantity;
-      //{<p class="cart-footer">$${item.total}</p>
-    });
-
-    function calculateCartTotal () {
-      let total = 0;
-      items.forEach(cartItems) => {
-        totalAmount += 
-      })
-    }
-    ;
-
-    const totalElement = document.getElementById("totalAmount");
-    totalElement.textContent = totalAmount;
-    totalAmount = (total + cartItems).toFixed(2);
+      });
+    
+    const totalElement = document.querySelector(".totalAmount");
+    totalElement.textContent = `$${total.toFixed(2)}`;
+    //totalElement = (cartFooter + cartItems).toFixed(2);
     cartFooter.classList.remove("hide");
     }
     else {
       cartFooter.classList.add("hide");
     }
-  }
-
+    return total;
+      }
    //Display the total in the cart footer
