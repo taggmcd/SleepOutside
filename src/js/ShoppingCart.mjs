@@ -15,6 +15,7 @@ export default class shoppingCart {
       const htmlItems = cartItems.map((item) => cartItemTemplate(item));
       document.querySelector(".product-list").innerHTML = htmlItems.join("");
       setClick(".cart-card__remove-btn", this.removeFromCart.bind(this));
+      displayTotal(cartItems);
     }
   }
 
@@ -47,3 +48,25 @@ function cartItemTemplate(item) {
 
   return newItem;
 }
+
+function displayTotal(cartItems) {
+ //this will pull as a parameter for the function
+    const cartFooter = document.querySelector(".cart-footer");
+    if (cartItems.length > 0) {
+      let total = 0;
+        //Calculate total
+      cartItems.forEach(item => {
+      total += item.FinalPrice * item.quantity;
+      });
+    
+    const totalElement = document.querySelector(".totalAmount");
+    totalElement.textContent = `$${total.toFixed(2)}`;
+    //totalElement = (cartFooter + cartItems).toFixed(2);
+    cartFooter.classList.remove("hide");
+    }
+    else {
+      cartFooter.classList.add("hide");
+    }
+    return total;
+      }
+   //Display the total in the cart footer
