@@ -21,11 +21,11 @@ function packageItems(items) {
 function formDataToJSON(formElement) {
     const formData = new FormData(formElement),
       convertedJSON = {};
-  
+
     formData.forEach(function (value, key) {
       convertedJSON[key] = value;
     });
-  
+
     return convertedJSON;
   }
 
@@ -37,6 +37,7 @@ export default class CheckoutProcess {
         this.shipping = 0;
         this.tax = 0;
         this.orderTotal = 0;
+        this.subtotal = 0;
         this.list = []
     }
 
@@ -48,46 +49,39 @@ export default class CheckoutProcess {
     calculateItemSummary() {
         // calculate and display the total amount of the items in the cart, and the number of items
         this.list.forEach(item => {
-            this.orderTotal += item.quantity * item.FinalPrice;
+            this.subtotal += item.quantity * item.FinalPrice;
             this.itemTotal += item.quantity;
         });
+        this.calculateOrdertotal()
     }
 
     calculateOrdertotal() {
         // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
-        this.tax = this.orderTotal * .06;
+        this.tax = this.subtotal * .06;
         this.shipping = 10 + (this.itemTotal-1)*2;
-        this.orderTotal = this.orderTotal + this.tax + this.shipping;
+        this.orderTotal = this.subtotal + this.tax + this.shipping;
         // display the totals.
         this.displayOrderTotals();
       }
-    
-    displayOrderTotals() {
-        // once the totals are all calculated display them in the order summary page
-    // document.getElementById("summary").insertAdjacentElement("afterbegin");
-    const shipping = document.querySelector(this.outputSelector + " #shipping");
-    const tax = document.querySelector(this.outputSelector + " #tax");
-    const orderTotal = document.querySelector(
-      this.outputSelector + " #orderTotal"
-    );
-    shipping.innerText = "$" + this.shipping;
-    tax.innerText = "$" + this.tax;
-    orderTotal.innerText = "$" + this.orderTotal;
-    }
-    
-    // renderOrderSummary() {
-    //     const newItem = `<p>Subtotal: $${displayTotal().toFixed(2)}</p>
-    //     <p>Shipping Estimate: $${this.shipping.toFixed(2)}</p>
-    //     <p>Tax: $${this.tax.toFixed(2)}</p>
-    //     <p>Order Total: $${this.orderTotal.toFixed(2)}</p>`;
 
-    //     return newItem;
-    // }
-    
+    displayOrderTotals() {
+      const elem = this.renderOrderSummary()
+      document.querySelector(this.outputSelector).innerHTML = elem
+    }
+
+    renderOrderSummary() {
+        const newItem = `<p>Subtotal: $${this.subtotal.toFixed(2)}</p>
+        <p>Shipping Estimate: $${this.shipping.toFixed(2)}</p>
+        <p>Tax: $${this.tax.toFixed(2)}</p>
+        <p>Order Total: $${this.orderTotal.toFixed(2)}</p>`;
+
+        return newItem;
+    }
+
     async checkout() {
     // build the data object from the calculated fields, the items in the cart, and the information entered into the form
     const formElement = document.forms["checkout"];
- 
+
     const json = formDataToJSON(formElement);
     // add totals, and item details
     json.orderDate = new Date();
