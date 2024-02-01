@@ -49,7 +49,7 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
-function displayTotal(cartItems) {
+export function displayTotal(cartItems) {
  //this will pull as a parameter for the function
     const cartFooter = document.querySelector(".cart-footer");
     if (cartItems.length > 0) {
