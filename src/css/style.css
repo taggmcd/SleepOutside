@@ -108,7 +108,15 @@ button {
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
-
+#advert {
+  color:var(--primary-color);
+  background-color: var(--dark-grey);
+  height: auto;
+  align-items: center;
+  text-align: center;
+  padding: .5px;
+  font-family: var(--font-body);
+}
 /* End utility classes */
 
 /* Cart icon styles */
