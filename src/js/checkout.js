@@ -7,5 +7,11 @@ checkoutProcess.init();
 document.querySelector("#zip").addEventListener("blur", checkoutProcess.calculateOrdertotal.bind(checkoutProcess));
 document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
     e.preventDefault();
-    checkoutProcess.checkout();
+    const formElement = document.forms["checkout"];
+    const isValid = formElement.checkValidity()
+    formElement.reportValidity()
+    if(isValid) {
+        checkoutProcess.checkout();
+    }
+
 });

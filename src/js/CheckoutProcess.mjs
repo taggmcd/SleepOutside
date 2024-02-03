@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, removeAllAlerts, alertMessage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
@@ -79,23 +79,29 @@ export default class CheckoutProcess {
     }
 
     async checkout() {
-    // build the data object from the calculated fields, the items in the cart, and the information entered into the form
-    const formElement = document.forms["checkout"];
+      // build the data object from the calculated fields, the items in the cart, and the information entered into the form
+      const formElement = document.forms["checkout"];
 
-    const json = formDataToJSON(formElement);
-    // add totals, and item details
-    json.orderDate = new Date();
-    json.orderTotal = this.orderTotal;
-    json.tax = this.tax;
-    json.shipping = this.shipping;
-    json.items = packageItems(this.list);
-    console.log(json);
-    try {
-      const res = await services.checkout(json);
-      console.log(res);
-    } catch (err) {
-      console.log(err);
+      const json = formDataToJSON(formElement);
+      // add totals, and item details
+      json.orderDate = new Date();
+      json.orderTotal = this.orderTotal;
+      json.tax = this.tax;
+      json.shipping = this.shipping;
+      json.items = packageItems(this.list);
+      console.log(json);
+      try {
+        const res = await services.checkout(json);
+        setLocalStorage("so-cart", []);
+        location.assign("/checkout/success.html");
+        console.log(res);
+      }
+      catch (err) {
+        removeAllAlerts();
+        for (let message in err.message) {
+          alertMessage(message);
+      }
+        console.log(err);
     }
-    // call the checkout method in our ExternalServices module and send it our data object.
-    }
+  }
 }

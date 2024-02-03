@@ -109,6 +109,11 @@ button {
   border-bottom: 2px solid var(--primary-color);
 }
 
+.alert {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0a868;
+}
 /* End utility classes */
 
 /* Cart icon styles */
