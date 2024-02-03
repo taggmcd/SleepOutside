@@ -227,25 +227,34 @@ button {
 
 /* Start form styles */
 form fieldset {
-    margin: 2rem 0;
-    border: 1px solid var(--primary-color);
-    border-radius: 10px;
-    padding: .5rem 2%;
-    }
+  margin: 2rem 2rem;
+  border: .3rem solid var(--primary-color);
+  border-radius: 10px;
+  padding: .5rem 2%;
+}
+form fieldset #info{
+  margin: 1rem;
+  border: .1rem solid var(--primary-color);
+  border-radius: 1rem;
+  padding: .5rem 2%;
+  padding-right: .1rem 2%;
+}
 form h3 {
 	color: var(secondary-color);
 	font-size: var(--large-font);
 }
 form legend {
-    color: var(--primary-color);
-    margin: 0 1rem;
-    padding: 0 .5rem;
+  grid-column: 2/3;
+  grid-row: 2;
+  color: var(--primary-color);
+  margin: 0 1rem;
+  padding: 0 .8rem;
 }
 form label.top, form div {
     display: block;
     padding-top: 1rem;
     color: var(--secondary-color);
-    font-size: .8rem;
+    font-size: .9rem;
 }
 form label.top input, form label.top select {
     -webkit-appearance: none;
