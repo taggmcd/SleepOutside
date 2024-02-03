@@ -105,6 +105,21 @@ button {
   cursor: pointer;
 }
 
+.cart-card section {
+  display: flex;
+  flex-direction:row;
+  gap: 1em;
+}
+
+
+.cart-card section > p {
+  padding: 0.25em 0.5em;
+}
+
+.cart-card section > button {
+  padding: 0.25em 0.5em;
+}
+
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
