@@ -1,5 +1,4 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
-
 function productDetailsTemplate(product) {
   const difference = product.SuggestedRetailPrice - product.FinalPrice;
   return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
@@ -10,7 +9,7 @@ function productDetailsTemplate(product) {
         alt="${product.NameWithoutBrand}"
       />
       <p class="product-card__price">$${product.FinalPrice}</p>
-      <p class="product-card_discount">$${difference}</p>
+      <p class="product-card_discount">$${difference.toFixed(2)} off</p>
       <p class="product__color">${product.Colors[0].ColorName}</p>
       <p class="product__description">
       ${product.DescriptionHtmlSimple}
@@ -51,9 +50,9 @@ export default class ProductDetails {
     cartIcon.classList.add("cart-party");
   }
 
+
   async init() {
     this.product = await this.dataSource.findProductById(this.productId);
-
     this.renderProductDetails("main");
     // once the HTML is rendered we can add a listener to Add to Cart button
     // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.

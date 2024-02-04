@@ -18,7 +18,6 @@ export default class shoppingCart {
       displayTotal(cartItems);
     }
   }
-
   removeFromCart(event) {
     const productId = event.target.getAttribute("data-id");
     const cartItems = getLocalStorage("so-cart");

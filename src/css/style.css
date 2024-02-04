@@ -32,9 +32,28 @@ img {
 header {
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 5px;
 }
-
+nav {
+  text-align: center;
+  margin: 0 auto;
+  width: 60%;
+}
+nav ul {
+list-style-type: none;
+}
+nav a{
+  text-decoration: none;
+  color: var(--dark-grey);
+  padding-left: 40px;
+  display: block;
+  float: inline-start;
+  font-size: larger;
+  font-family: var(--font-headline);
+}
+nav a:hover {
+  color: var(--secondary-color);
+}
 .logo {
   line-height: 60px;
   width: 245px;
@@ -262,7 +281,7 @@ button {
 }
 
 .product-card_discount {
-  background-color: crimson;
+  background-color: var(--primary-color);
   color: azure;
 }
 
