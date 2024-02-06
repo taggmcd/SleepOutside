@@ -25,8 +25,9 @@ body {
   color: var(--dark-grey);
 }
 
-img {
-  max-width: 100%;
+img a{
+  max-width: 150px 60%;
+  min-width: 150px 60%;
 }
 
 header {
