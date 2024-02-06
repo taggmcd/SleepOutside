@@ -257,7 +257,7 @@ form label.top, form div {
     font-size: .9rem;
 }
 form label.top input, form label.top select {
-    -webkit-appearance: none;
+    /*-webkit-appearance: none;*/
     display: block;
     font-size: 1rem;
     border: solid 1px var(--tertiary-color);
